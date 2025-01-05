@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:widget_advanced_info_app/SecondPage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -96,9 +97,11 @@ class HomePage extends StatelessWidget {
       floatingActionButton: CustomFloatingButton(),
       backgroundColor: Colors.pink,
       body: Center(
-        child: 
-        //GreetingText(), 
-        ContainerWidget(),
+        child: ContainerWidget(),
+      ),
+      bottomNavigationBar: Padding(
+        padding: EdgeInsets.all(20),
+        child: NavigationButton(),
       ),
     );
   }
@@ -452,6 +455,52 @@ class CustomAlertDialog extends StatelessWidget {
           child: const Text('Aceptar'),
         ),
       ],
+    );
+  }
+}
+
+// Navegación para hacer formularios
+class NavigationButton extends StatelessWidget {
+  const NavigationButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        gradient: LinearGradient(
+          colors: [
+            Colors.white,
+            Colors.pink.shade100,
+          ],
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 10,
+            spreadRadius: 2,
+          ),
+        ],
+      ),
+      child: ElevatedButton.icon(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const SecondPage()),
+          );
+        },
+        icon: const Icon(Icons.arrow_forward),
+        label: const Text('Siguiente'),
+        style: ElevatedButton.styleFrom(
+          foregroundColor: Colors.pink.shade400,
+          backgroundColor: Colors.transparent,
+          shadowColor: Colors.transparent,
+          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+        ),
+      ),
     );
   }
 }
